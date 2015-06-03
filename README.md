@@ -2,6 +2,14 @@
 
 > measure execution time of functions and promises
 
+```js
+taim(require)('./package.json');
+var Promise = taim(require)('bluebird');
+taim('promisify', Promise.promisifyAll)(fs);
+```
+
+<img width="170" height="81" src="https://raw.githubusercontent.com/raine/taim/media/img.png" />
+
 ## install
 
 ```sh
@@ -15,7 +23,7 @@ npm install taim
 Returns a decorated version of a function that when invoked, measures and
 prints the execution time of the function.
 
-If the function returns a Promise, it will instead measure time until the
+If the function returns a Promise, it will instead measure the time until the
 promise is resolved.
 
 You can optionally pass a label that will shown in the output.
@@ -28,7 +36,7 @@ invoking `taim` to the promise resolving is printed to stderr.
 #### `taim.pipe(Function...)`
 #### `taim.compose(Function...)`
 
-Before dispatching to [Ramda's][ramda] [`pipe`][pipe] and
+Before dispatching to [Ramda's][ramda] [`pipe`][pipe] or
 [`compose`][compose], applies `taim` to each function.
 
 #### `taim.pipeP(Function...)`
@@ -38,6 +46,11 @@ Before dispatching to [Ramda's][ramda] [`pipe`][pipe] and
 
 TODO
 
+---
+
+See also [`treis`][treis], a tool to debug and observe functions.
+
+[treis]: https://github.com/raine/treis
 [ramda]: http://ramdajs.com
 [pipe]: http://ramdajs.com/docs/#pipe
 [compose]: http://ramdajs.com/docs/#compose
