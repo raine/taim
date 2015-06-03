@@ -1,0 +1,21 @@
+{
+  "name": "taim",
+  "version": "0.0.0",
+  "description": "measure execution time of functions and promises",
+  "repository": "raine/taim",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "make test"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "livescript": "^1.4.0",
+    "mocha": "^2.2.5"
+  },
+  "dependencies": {
+    "chalk": "^1.0.0",
+    "pretty-hrtime": "^1.0.0",
+    "ramda": "^0.14.0"
+  }
+}
