@@ -44,7 +44,31 @@ Before dispatching to [Ramda's][ramda] [`pipe`][pipe] or
 
 ## example
 
-TODO
+```js
+var taim = require('taim');
+var Promise = require('bluebird');
+var {pipeP, prop, concat, map, split, join} = require('ramda');
+var request = Promise.promisify(require('request'));
+
+var makeHeader = concat('# ');
+var makeTodo   = concat('- [ ] ');
+
+var getList = taim('getList', (url) =>
+  request(url).then(prop(1)))
+
+var makeShoppingList = taim.pipeP(
+  getList,
+  split('\n'),
+  map(makeTodo),
+  join('\n'),
+  concat(makeHeader('my shopping list\n\n'))
+);
+
+makeShoppingList('http://j.mp/my-grocery-shopping-list')
+  .then(console.log);
+```
+
+<img width="322" height="279" src="https://raw.githubusercontent.com/raine/taim/media/shopping.png" />
 
 ---
 
