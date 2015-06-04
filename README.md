@@ -1,6 +1,6 @@
 # taim [![npm version](https://badge.fury.io/js/taim.svg)](https://www.npmjs.com/package/taim)
 
-> measure execution time of functions and promises
+> tʌɪm | measure execution time of functions and promises
 
 ```js
 taim(require)('./package.json');
@@ -34,6 +34,14 @@ You can optionally pass a label that will shown in the output.
 
 Wraps a Promise (or a thenable) so that when it resolves, duration from
 invoking `taim` to the promise resolving is printed to stderr.
+
+---
+
+#### `taim.cb(label?, Function) → Function`
+
+Returns a decorated version of a function that when invoked with a callback
+function as the last argument, measures and prints the time until the
+callback is executed.
 
 ---
 
