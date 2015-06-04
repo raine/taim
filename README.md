@@ -48,6 +48,9 @@ Before dispatching to [Ramda's][ramda] [`pipe`][pipe] or
 #### `taim.pipeP(Function...) → Function`
 #### `taim.composeP(Function...) → Function`
 
+Before dispatching to [Ramda's][ramda] [`pipeP`][pipeP] or
+[`composeP`][composeP], applies `taim` to each function.
+
 ## example
 
 ```js
@@ -84,3 +87,5 @@ See also [`treis`][treis], a tool to debug and observe functions.
 [ramda]: http://ramdajs.com
 [pipe]: http://ramdajs.com/docs/#pipe
 [compose]: http://ramdajs.com/docs/#compose
+[pipeP]: http://ramdajs.com/docs/#pipeP
+[composeP]: http://ramdajs.com/docs/#composeP
