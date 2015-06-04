@@ -2,13 +2,19 @@
 
 > tʌɪm | measure execution time of functions and promises
 
+<img align="right" width="170" height="81" src="https://raw.githubusercontent.com/raine/taim/media/img.png" />
+
 ```js
 taim(require)('./package.json');
 var Promise = taim(require)('bluebird');
 taim('promisify', Promise.promisifyAll)(fs);
 ```
 
-<img width="170" height="81" src="https://raw.githubusercontent.com/raine/taim/media/img.png" />
+### it measures
+
+- execution time of a function
+- time until a Promise is resolved
+- time until a callback function is invoked
 
 ## install
 
