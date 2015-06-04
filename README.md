@@ -82,7 +82,7 @@ const {replace} = require('ramda');
 const request = Promise.promisify(require('request'));
 const taim = require('taim');
 
-// :: () → [Promise]
+// :: () → Promise [String]
 const readURLs = require('../lib/read-urls');
 const reqHead = taim('req', (uri) => request({ method: 'HEAD', uri }));
 const checkURLs = (urls) => urls
