@@ -1,5 +1,5 @@
 require! <[ pretty-hrtime chalk ]>
-require! ramda: {apply, unapply, map, for-each}: R
+require! ramda: {apply, map, for-each}: R
 
 COLORS     = <[ green yellow blue magenta cyan white ]>
 rotate     = (xs) -> i = 0; -> xs[i++ % xs.length]
