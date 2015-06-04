@@ -4,3 +4,4 @@ test
 .gitignore
 Makefile
 .travis.yml
+stuff/
