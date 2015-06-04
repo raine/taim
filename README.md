@@ -43,6 +43,21 @@ Returns a decorated version of a function that when invoked with a callback
 function as the last argument, measures and prints the time until the
 callback is executed.
 
+```js
+const sleeper = (cb) => {
+  setTimeout(() => cb('took a nap, sorry'), 500);
+}
+
+taim.cb(sleeper)(excuse =>
+  console.log('the excuse was:', excuse)
+)
+```
+
+```
+505 ms
+the excuse was: took a nap, sorry
+```
+
 ---
 
 #### `taim.pipe(Function...) → Function`
