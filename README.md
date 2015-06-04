@@ -18,7 +18,7 @@ npm install taim
 
 ## usage
  
-#### `taim(label?, Function)`
+#### `taim(label?, Function) → Function`
 
 Returns a decorated version of a function that when invoked, measures and
 prints the execution time of the function.
@@ -28,19 +28,25 @@ promise is resolved.
 
 You can optionally pass a label that will shown in the output.
 
-#### `taim(label?, Promise)`
+---
+
+#### `taim(label?, Promise) → Function`
 
 Wraps a Promise (or a thenable) so that when it resolves, duration from
 invoking `taim` to the promise resolving is printed to stderr.
 
-#### `taim.pipe(Function...)`
-#### `taim.compose(Function...)`
+---
+
+#### `taim.pipe(Function...) → Function`
+#### `taim.compose(Function...) → Function`
 
 Before dispatching to [Ramda's][ramda] [`pipe`][pipe] or
 [`compose`][compose], applies `taim` to each function.
 
-#### `taim.pipeP(Function...)`
-#### `taim.composeP(Function...)`
+---
+
+#### `taim.pipeP(Function...) → Function`
+#### `taim.composeP(Function...) → Function`
 
 ## example
 
