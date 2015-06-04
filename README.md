@@ -54,30 +54,27 @@ Before dispatching to [Ramda's][ramda] [`pipeP`][pipeP] or
 ## example
 
 ```js
-var taim = require('taim');
-var Promise = require('bluebird');
-var {pipeP, prop, concat, map, split, join} = require('ramda');
-var request = Promise.promisify(require('request'));
+const Promise = require('bluebird');
+const {replace} = require('ramda');
+const request = Promise.promisify(require('request'));
+const taim = require('taim');
 
-var makeHeader = concat('# ');
-var makeTodo   = concat('- [ ] ');
+// :: () → [Promise]
+const readURLs = require('../lib/read-urls');
+const reqHead = taim('req', (uri) => request({ method: 'HEAD', uri }));
+const checkURLs = (urls) => urls
+  .map(replace(/^\/\//, 'http://'))
+  .map(function(url) {
+    return reqHead(url).spread(function(res) {
+      if (res.statusCode !== 200) throw new Error(res.statusCode);
+    });
+  }, { concurrency: 1 })
 
-var getList = taim('getList', (url) =>
-  request(url).then(prop(1)))
-
-var makeShoppingList = taim.pipeP(
-  getList,
-  split('\n'),
-  map(makeTodo),
-  join('\n'),
-  concat(makeHeader('my shopping list\n\n'))
-);
-
-makeShoppingList('http://j.mp/my-grocery-shopping-list')
-  .then(console.log);
+const urls = taim('read urls', readURLs());
+taim('all', checkURLs(urls));
 ```
 
-<img width="322" height="279" src="https://raw.githubusercontent.com/raine/taim/media/shopping.png" />
+![](https://raw.githubusercontent.com/raine/taim/media/check-urls.png)
 
 ---
 
