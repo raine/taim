@@ -77,7 +77,7 @@ Before dispatching to [Ramda's][ramda] [`pipe`][pipe] or
 Before dispatching to [Ramda's][ramda] [`pipeP`][pipeP] or
 [`composeP`][composeP], applies `taim` to each function.
 
-## example
+## examples
 
 ```js
 const Promise = require('bluebird');
@@ -99,6 +99,34 @@ taim('all', checkURLs(urls));
 ```
 
 <img src="https://raw.githubusercontent.com/raine/taim/media/check-urls.png" width="338" height="279">
+
+---
+
+```js
+const taim = require('taim');
+const Promise = require('bluebird');
+const {pipeP, prop, concat, map, split, join} = require('ramda');
+const request = Promise.promisify(require('request'));
+
+const makeHeader = concat('# ');
+const makeTodo   = concat('- [ ] ');
+
+const getList = taim('getList', (url) =>
+  request(url).then(prop(1)))
+
+const makeShoppingList = taim.pipeP(
+  getList,
+  split('\n'),
+  map(makeTodo),
+  join('\n'),
+  concat(makeHeader('my shopping list\n\n'))
+);
+
+makeShoppingList('http://j.mp/my-grocery-shopping-list')
+  .then(console.log);
+```
+
+<img width="322" height="279" src="https://raw.githubusercontent.com/raine/taim/media/shopping.png" />
 
 ---
 
