@@ -59,10 +59,7 @@ taim.cb(sleeper)(excuse =>
 )
 ```
 
-```
-505 ms
-the excuse was: took a nap, sorry
-```
+<img src="https://raw.githubusercontent.com/raine/taim/media/sleeper.png" width="274" height="63">
 
 ---
 
@@ -103,7 +100,7 @@ const urls = taim('read urls', readURLs());
 taim('all', checkURLs(urls));
 ```
 
-![](https://raw.githubusercontent.com/raine/taim/media/check-urls.png)
+<img src="https://raw.githubusercontent.com/raine/taim/media/check-urls.png" width="338" height="279">
 
 ---
 
