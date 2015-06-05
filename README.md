@@ -81,7 +81,6 @@ Before dispatching to [Ramda's][ramda] [`pipeP`][pipeP] or
 
 ```js
 const Promise = require('bluebird');
-const {replace} = require('ramda');
 const request = Promise.promisify(require('request'));
 const taim = require('taim');
 
@@ -89,7 +88,6 @@ const taim = require('taim');
 const readURLs = require('../lib/read-urls');
 const reqHead = taim('req', (uri) => request({ method: 'HEAD', uri }));
 const checkURLs = (urls) => urls
-  .map(replace(/^\/\//, 'http://'))
   .map(function(url) {
     return reqHead(url).spread(function(res) {
       if (res.statusCode !== 200) throw new Error(res.statusCode);
