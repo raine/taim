@@ -11,11 +11,11 @@
   "license": "ISC",
   "devDependencies": {
     "livescript": "^1.4.0",
-    "mocha": "^2.2.5"
+    "mocha": "^2.3.2"
   },
   "dependencies": {
-    "chalk": "^1.0.0",
+    "chalk": "^1.1.1",
     "pretty-hrtime": "^1.0.0",
-    "ramda": "^0.14.0"
+    "ramda": "^0.17.1"
   }
 }
