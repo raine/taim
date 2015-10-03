@@ -1,6 +1,6 @@
 {
   "name": "taim",
-  "version": "0.1.2",
+  "version": "1.0.0",
   "description": "measure execution time of functions and promises",
   "repository": "raine/taim",
   "main": "lib/index.js",
