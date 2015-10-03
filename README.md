@@ -19,11 +19,11 @@ taim('promisify', Promise.promisifyAll)(fs);
 ## install
 
 ```sh
-npm install taim
+$ npm install taim
 ```
 
 ## usage
- 
+
 #### `taim(label?, Function) → Function`
 
 Returns a decorated version of a function that when invoked, measures and
@@ -41,6 +41,14 @@ You can optionally pass a label that will shown in the output.
 Wraps a Promise (or a thenable) so that when it resolves, duration from
 invoking `taim` to the promise resolving is printed to stderr.
 
+```js
+const p =
+  Promise.delay(1000)
+    .then(always('Hello world!'));
+
+taim(p).then(console.log); // Hello world!
+```
+
 ---
 
 #### `taim.cb(label?, Function) → Function`
@@ -50,32 +58,14 @@ function as the last argument, measures and prints the time until the
 callback is executed.
 
 ```js
-const sleeper = (cb) => {
-  setTimeout(() => cb('took a nap, sorry'), 500);
-}
+const sleeper = (ms, cb) =>
+  setTimeout(() => cb(null, 'took a nap, sorry'), ms)
 
-taim.cb(sleeper)(excuse =>
-  console.log('the excuse was:', excuse)
-)
+taim.cb('sleeper', sleeper)(500, (err, excuse) =>
+  console.log('the excuse was:', excuse))
 ```
 
 <img src="https://raw.githubusercontent.com/raine/taim/media/sleeper.png" width="274" height="63">
-
----
-
-#### `taim.pipe(Function...) → Function`
-#### `taim.compose(Function...) → Function`
-
-Before dispatching to [Ramda's][ramda] [`pipe`][pipe] or
-[`compose`][compose], applies `taim` to each function.
-
----
-
-#### `taim.pipeP(Function...) → Function`
-#### `taim.composeP(Function...) → Function`
-
-Before dispatching to [Ramda's][ramda] [`pipeP`][pipeP] or
-[`composeP`][composeP], applies `taim` to each function.
 
 ## examples
 
@@ -102,39 +92,7 @@ taim('all', checkURLs(urls));
 
 ---
 
-```js
-const taim = require('taim');
-const Promise = require('bluebird');
-const {pipeP, prop, concat, map, split, join} = require('ramda');
-const request = Promise.promisify(require('request'));
-
-const makeHeader = concat('# ');
-const makeTodo   = concat('- [ ] ');
-
-const getList = taim('getList', (url) =>
-  request(url).then(prop(1)))
-
-const makeShoppingList = taim.pipeP(
-  getList,
-  split('\n'),
-  map(makeTodo),
-  join('\n'),
-  concat(makeHeader('my shopping list\n\n'))
-);
-
-makeShoppingList('http://j.mp/my-grocery-shopping-list')
-  .then(console.log);
-```
-
-<img width="322" height="279" src="https://raw.githubusercontent.com/raine/taim/media/shopping.png" />
-
----
-
 See also [`treis`][treis], a tool to debug and observe functions.
 
 [treis]: https://github.com/raine/treis
 [ramda]: http://ramdajs.com
-[pipe]: http://ramdajs.com/docs/#pipe
-[compose]: http://ramdajs.com/docs/#compose
-[pipeP]: http://ramdajs.com/docs/#pipeP
-[composeP]: http://ramdajs.com/docs/#composeP

@@ -1,25 +1,32 @@
 .PHONY: test
 
-SRC = $(shell find src -name "*.ls" -type f | sort)
-LIB = $(SRC:src/%.ls=lib/%.js)
+SRC = $(shell find src -name "*.js" -type f | sort)
+LIB = $(patsubst src/%.js, lib/%.js, $(SRC))
+NAME = $(shell node -e "console.log(require('./package.json').name)")
 
-MOCHA = ./node_modules/.bin/mocha
-LSC = ./node_modules/.bin/lsc
-REPORTER ?= spec
-GREP ?= ".*"
-MOCHA_ARGS = --grep $(GREP) --compilers ls:livescript --recursive
+BABEL = ./node_modules/.bin/babel
 
 default: all
 
 lib:
 	mkdir -p lib/
 
-lib/%.js: src/%.ls lib
-	$(LSC) --compile --map=linked --output lib "$<"
+lib/%.js: src/%.js lib
+	$(BABEL) -b regenerator "$<" > lib/$(notdir $<)
 
 all: compile
 
 compile: $(LIB) package.json
+
+install: clean all
+	npm install -g .
+
+reinstall: clean
+	$(MAKE) uninstall
+	$(MAKE) install
+
+uninstall:
+	npm uninstall -g ${NAME}
 
 dev-install: package.json
 	npm install .
@@ -30,9 +37,3 @@ clean:
 publish: all test
 	git push --tags origin HEAD:master
 	npm publish
-
-test:
-	@$(MOCHA) $(MOCHA_ARGS) --reporter $(REPORTER)
-
-test-w:
-	@$(MOCHA) $(MOCHA_ARGS) --reporter min --watch
