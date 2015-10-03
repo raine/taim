@@ -2,12 +2,17 @@
 
 > tʌɪm | measure execution time of functions and promises
 
-<img align="right" width="170" height="81" src="https://raw.githubusercontent.com/raine/taim/media/img.png" />
+<img align="right" src="https://raw.githubusercontent.com/raine/taim/media/img.png" />
 
 ```js
-taim(require)('./package.json');
-var Promise = taim(require)('bluebird');
-taim('promisify', Promise.promisifyAll)(fs);
+const reallyDumbSleep = () => {
+  let i = 0;
+  while (i < 900000000) {
+    i++;
+  }
+}
+
+taim('zzz', reallyDumbSleep)();
 ```
 
 ### it measures
@@ -74,9 +79,13 @@ const Promise = require('bluebird');
 const request = Promise.promisify(require('request'));
 const taim = require('taim');
 
-// :: () → Promise [String]
+//    readURLs :: () -> Promise [String]
 const readURLs = require('../lib/read-urls');
+
+//    reqHead :: String -> Promise Response
 const reqHead = taim('req', (uri) => request({ method: 'HEAD', uri }));
+
+//    checkURLs :: [String] -> Promise ()
 const checkURLs = (urls) => urls
   .map(function(url) {
     return reqHead(url).spread(function(res) {
