@@ -28,6 +28,8 @@ const printDuration = (start, color, label) => {
   println(color(pre + dur));
 };
 
+//    taim :: label?, Function -> Function
+//    taim :: label?, Promise  -> Promise
 const taim = (...args) => {
   const color = chalk[nextColor()];
   const [val, label] = getArgs(...args);
@@ -62,6 +64,8 @@ const taim = (...args) => {
   ])(val);
 };
 
+
+//    taimCb :: label?, Function -> Function
 const taimCb = (...args) => {
   const color = chalk[nextColor()];
   const [val, label] = getArgs(...args);
