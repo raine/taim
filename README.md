@@ -41,7 +41,7 @@ You can optionally pass a label that will shown in the output.
 
 ---
 
-#### `taim(label?, Promise) → Function`
+#### `taim(label?, Promise) → Promise`
 
 Wraps a Promise (or a thenable) so that when it resolves, duration from
 invoking `taim` to the promise resolving is printed to stderr.
