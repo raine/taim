@@ -12,7 +12,7 @@ lib:
 	mkdir -p lib/
 
 lib/%.js: src/%.js lib
-	$(BABEL) -b regenerator "$<" > lib/$(notdir $<)
+	$(BABEL) "$<" > lib/$(notdir $<)
 
 all: compile
 
