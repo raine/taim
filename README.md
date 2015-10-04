@@ -99,6 +99,22 @@ taim('all', checkURLs(urls));
 
 <img src="https://raw.githubusercontent.com/raine/taim/media/check-urls.png" width="338" height="279">
 
+## useful vim mappings
+
+These require [surround.vim](https://github.com/tpope/vim-surround):
+
+```viml
+" Surround a word with taim()
+nmap <buffer> <Leader>tr ysiwftaim<CR>f(
+
+" Surround a visual selection with taim()
+vmap <buffer> <Leader>tr Sftaim<CR>f(
+
+" Use without requiring separately
+nmap <buffer> <Leader>tA ysiwfrequire('taim')<CR>f(
+vmap <buffer> <Leader>tA Sfrequire('taim')<CR>f(
+```
+
 ---
 
 See also [`treis`][treis], a tool to debug and observe functions.
