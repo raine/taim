@@ -5,9 +5,10 @@ LIB = $(patsubst src/%.js, lib/%.js, $(SRC))
 NAME = $(shell node -e "console.log(require('./package.json').name)")
 TAPE = ./node_modules/.bin/babel-tape-runner
 
-.PHONY: test
+.PHONY: test lint
 
 BABEL = ./node_modules/.bin/babel
+ESLINT = ./node_modules/.bin/eslint
 
 default: all
 
@@ -43,3 +44,6 @@ publish: all test
 
 test:
 	@$(TAPE) test/*
+
+lint:
+	@$(ESLINT) src/ test/
