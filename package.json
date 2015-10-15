@@ -17,6 +17,6 @@
   "dependencies": {
     "chalk": "^1.1.1",
     "pretty-hrtime": "^1.0.0",
-    "ramda": "0.17.x"
+    "ramda": "0.18.x"
   }
 }
