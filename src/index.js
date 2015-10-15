@@ -1,5 +1,5 @@
 const chalk = require('chalk');
-const { __, add, allPass, bind, complement, concat, cond, equals, init, isNil, last, pipe, propSatisfies, T, type } = require('ramda');
+const { __, add, allPass, bind, complement, concat, cond, equals, init, isNil, last, pipe, propSatisfies, T, tap, type } = require('ramda');
 const prettyHrtime = require('pretty-hrtime');
 
 const COLORS = ['green', 'yellow', 'blue', 'magenta', 'cyan', 'white'];
@@ -57,10 +57,9 @@ const taim = (...args) => {
         return res;
       }
     ],
-    [ T, (val) => {
+    [ T, tap(val => {
       println(`taim error: input should be a function or thenable, instead got a ${type(val)}`);
-      return val;
-    } ]
+    }) ]
   ])(val);
 };
 
@@ -81,10 +80,9 @@ const taimCb = (...args) => {
         } ]));
       }
     ],
-    [ T, (val) => {
+    [ T, tap(val => {
       println(`taim error: input should be a function, instead got a ${type(val)}`);
-      return val;
-    } ]
+    }) ]
   ])(val);
 };
 
