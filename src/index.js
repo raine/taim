@@ -1,5 +1,5 @@
 const chalk = require('chalk');
-const { __, add, allPass, bind, complement, concat, cond, equals, init, isNil, last, pipe, propSatisfies, T, tap, type } = require('ramda');
+const { allPass, complement, concat, cond, equals, init, isNil, last, pipe, propSatisfies, T, tap, type } = require('ramda');
 const prettyHrtime = require('pretty-hrtime');
 
 const COLORS = ['green', 'yellow', 'blue', 'magenta', 'cyan', 'white'];
@@ -18,14 +18,13 @@ const isFunction = pipe(type, equals('Function'));
 const hasThenFn =
   allPass([ complement(isNil),
             propSatisfies(isFunction, 'then') ]);
-const writeStderr = bind(process.stderr.write, process.stderr);
-const println = pipe(add(__, '\n'), writeStderr);
+const println = (stream, str) => stream.write(`${str}\n`);
 
 const printDuration = (start, color, label) => {
   const end = process.hrtime(start);
   const pre = label ? `${chalk.bold(label)} took ` : '';
   const dur = prettyHrtime(end);
-  println(color(pre + dur));
+  println(process.stderr, color(pre + dur));
 };
 
 //    taim :: label?, Function -> Function
@@ -58,7 +57,7 @@ const taim = (...args) => {
       }
     ],
     [ T, tap(val => {
-      println(`taim error: input should be a function or thenable, instead got a ${type(val)}`);
+      println(process.stderr, `taim error: input should be a function or thenable, instead got a ${type(val)}`);
     }) ]
   ])(val);
 };
@@ -81,7 +80,7 @@ const taimCb = (...args) => {
       }
     ],
     [ T, tap(val => {
-      println(`taim error: input should be a function, instead got a ${type(val)}`);
+      println(process.stderr, `taim error: input should be a function, instead got a ${type(val)}`);
     }) ]
   ])(val);
 };

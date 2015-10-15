@@ -11,8 +11,11 @@
   "license": "ISC",
   "devDependencies": {
     "babel": "^5.8.23",
+    "babel-tape-runner": "^1.2.0",
+    "bluebird": "^2.10.2",
     "eslint": "^1.5.1",
-    "mocha": "^2.3.2"
+    "rewire": "^2.3.4",
+    "tape": "^4.2.1"
   },
   "dependencies": {
     "chalk": "^1.1.1",

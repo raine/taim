@@ -3,6 +3,9 @@
 SRC = $(shell find src -name "*.js" -type f | sort)
 LIB = $(patsubst src/%.js, lib/%.js, $(SRC))
 NAME = $(shell node -e "console.log(require('./package.json').name)")
+TAPE = ./node_modules/.bin/babel-tape-runner
+
+.PHONY: test
 
 BABEL = ./node_modules/.bin/babel
 
@@ -37,3 +40,6 @@ clean:
 publish: all test
 	git push --tags origin HEAD:master
 	npm publish
+
+test:
+	@$(TAPE) test/*
