@@ -1,4 +1,4 @@
-# taim [![npm version](https://badge.fury.io/js/taim.svg)](https://www.npmjs.com/package/taim)
+# taim [![npm version](https://badge.fury.io/js/taim.svg)](https://www.npmjs.com/package/taim) [![Build Status](https://travis-ci.org/raine/taim.svg?branch=master)](https://travis-ci.org/raine/taim)
 
 > tʌɪm | measure execution time of functions and promises
 
