@@ -115,7 +115,7 @@ nmap <buffer> <Leader>tA ysiwfrequire('taim')<CR>f(
 vmap <buffer> <Leader>tA Sfrequire('taim')<CR>f(
 ```
 
----
+--
 
 See also [`treis`][treis], a tool to debug and observe functions.
 
