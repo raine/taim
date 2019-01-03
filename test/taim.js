@@ -52,6 +52,16 @@ test('promise-returning function', (t) => {
   taim(fn)().then(res => t.equal(res, 'foo'))
 })
 
+test('async function', (t) => {
+  const cb = (out) => {
+    t.equal(out, '\u001b[32m100 ms\u001b[39m\n')
+    t.end()
+  }
+  const fn = async () => "foo"
+  const taim = setup(cb)
+  taim(fn)().then(res => t.equal(res, 'foo'))
+})
+
 test('promise', (t) => {
   const cb = (out) => {
     t.equal(out, '\u001b[32m100 ms\u001b[39m\n')
@@ -89,7 +99,7 @@ test('callback', (t) => {
 
 test('bad input error', (t) => {
   const cb = (out) => {
-    t.equal(out, 'taim error: input should be a function or thenable, instead got a Object\n')
+    t.equal(out, 'taim error: input should be a async function, function, or thenable, instead got a Object\n')
     t.end()
   }
 

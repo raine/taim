@@ -29,13 +29,13 @@ $ npm install taim
 
 ## usage
 
-#### `taim(label?, Function) → Function`
+#### `taim(label?, Function | AsyncFunction) → Function | AsyncFunction`
 
 Returns a decorated version of a function that when invoked, measures and
 prints the execution time of the function.
 
-If the function returns a Promise, it will instead measure the time until the
-promise is resolved.
+If the function returns a Promise or is an AsyncFunction, it will instead
+measure the time until the returned promise is resolved.
 
 You can optionally pass a label that will shown in the output.
 
