@@ -1,4 +1,4 @@
-const taim = require('../src');
+const taim = require('../lib');
 
 const sleeper = (ms, cb) =>
   setTimeout(() => cb(null, 'took a nap, sorry'), ms)

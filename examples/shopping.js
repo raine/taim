@@ -1,4 +1,4 @@
-const taim = require('../src');
+const taim = require('../lib');
 const Promise = require('bluebird');
 const { concat, join, map, pipeP, prop, split } = require('ramda');
 const request = Promise.promisify(require('request'));

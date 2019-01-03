@@ -1,6 +1,6 @@
 const { always } = require('ramda');
 const Promise = require('bluebird');
-const taim = require('../src');
+const taim = require('../lib');
 
 const p =
   Promise.delay(1000)

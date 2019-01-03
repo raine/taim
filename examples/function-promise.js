@@ -1,6 +1,6 @@
 // Functions returns a promise
 
-const taim = require('../src');
+const taim = require('../lib');
 const Promise = require('bluebird');
 
 const delay = () =>

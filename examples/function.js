@@ -1,4 +1,4 @@
-const taim = require('../src');
+const taim = require('../lib');
 const reallyDumbSleep = () => {
   let i = 0;
   while (i < 900000000) {

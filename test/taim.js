@@ -5,7 +5,7 @@ const { always } = require('ramda')
 const Promise = require('bluebird')
 
 const setup = (cb) => {
-  const taim = rewire('../src')
+  const taim = rewire('../lib')
   const out = new stream.PassThrough()
   out.on('data', (data) => {
     cb((data.toString()))
