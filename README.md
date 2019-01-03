@@ -29,7 +29,7 @@ $ npm install taim
 
 ## usage
 
-#### `taim(label?, Function | AsyncFunction) → Function | AsyncFunction`
+#### `taim(label?, Function | AsyncFunction) → Function`
 
 Returns a decorated version of a function that when invoked, measures and
 prints the execution time of the function.
@@ -121,7 +121,7 @@ vmap <buffer> <Leader>tA Sfrequire('taim')<CR>f(
 
 - Added: Support for async functions
 
---
+---
 
 See also [`treis`][treis], a tool to debug and observe functions.
 
