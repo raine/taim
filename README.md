@@ -115,6 +115,12 @@ nmap <buffer> <Leader>tA ysiwfrequire('taim')<CR>f(
 vmap <buffer> <Leader>tA Sfrequire('taim')<CR>f(
 ```
 
+## changelog
+
+### 1.1.0 - 2019-01-03
+
+- Added: Support for async functions
+
 --
 
 See also [`treis`][treis], a tool to debug and observe functions.
